@@ -15,7 +15,7 @@ namespace MVC
 
     public partial class Form1 : Form
     {
-        public event AgregarContactoDelegate OnAgregarContacto;
+        public event EventHandler<OnAgregarContactoArgs> OnAgregarContacto;
 
         public Form1()
         {
@@ -33,7 +33,10 @@ namespace MVC
             if (OnAgregarContacto != null)
             {
                 // Notificar a los suscritos
-                OnAgregarContacto.Invoke(nombreTextBox.Text, emailTextBox.Text);
+                OnAgregarContactoArgs contactoArgs = new OnAgregarContactoArgs();
+                contactoArgs.email = emailTextBox.Text;
+                contactoArgs.nombre = nombreTextBox.Text;
+                OnAgregarContacto.Invoke(sender, contactoArgs);
             }
         }
 

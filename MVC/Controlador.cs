@@ -17,9 +17,9 @@ namespace MVC
             contactos = new ListaContactos();
         }
 
-        public void OnAgregarContacto(string nombre, string email)
+        public void OnAgregarContacto(object sender, OnAgregarContactoArgs args)
         {
-            Contacto contacto = new Contacto(nombre, email);
+            Contacto contacto = new Contacto(args.nombre, args.email);
             contactos.Agregar(contacto);
             form1.AgregarContacto(contacto);
         }
